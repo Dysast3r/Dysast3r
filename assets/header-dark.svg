@@ -5,22 +5,41 @@
   <radialGradient id="glowE" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#10b981" stop-opacity="0.44000000000000006"/><stop offset="1" stop-color="#10b981" stop-opacity="0"/></radialGradient>
   <linearGradient id="fade" x1="0" x2="1"><stop offset="0.38" stop-color="#0a0a0b"/><stop offset="0.62" stop-color="#0a0a0b" stop-opacity="0"/></linearGradient>
   <clipPath id="frame"><rect width="1200" height="380" rx="22"/></clipPath>
-  <clipPath id="type"><rect class="typer" x="64" y="268" width="420" height="32"/></clipPath>
   <style>
+  .rise{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
     .c{animation:float 4.2s ease-in-out infinite}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
     .pulse{animation:pulse 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
     @keyframes pulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
-    .typer{transform-box:fill-box;transform-origin:left center;animation:type 7s steps(37) infinite}
-    @keyframes type{0%{transform:scaleX(0)}45%,88%{transform:scaleX(1)}100%{transform:scaleX(0)}}
-    .caret{animation:caret 7s steps(37) infinite,blink .9s step-end infinite}
-    @keyframes caret{0%{transform:translateX(0)}45%,88%{transform:translateX(420px)}100%{transform:translateX(0)}}
-    @keyframes blink{50%{opacity:0}}
     .dot{animation:ping 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
     @keyframes ping{0%{transform:scale(1);opacity:.7}100%{transform:scale(3);opacity:0}}
-    .rise{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
-    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-    @media (prefers-reduced-motion:reduce){.c,.pulse,.dot,.rise{animation:none}.typer{animation:none;transform:none}.caret{animation:none;transform:translateX(420px)}}
+    
+    .t0{transform-box:fill-box;transform-origin:left center;animation:t0 20s steps(37) infinite}
+    @keyframes t0{0%,0.000%{transform:scaleX(0)}10.500%,22.500%{transform:scaleX(1)}22.510%,100%{transform:scaleX(0)}}
+    .k0{animation:k0 20s steps(37) infinite}
+    @keyframes k0{0%,0.000%{transform:translateX(0)}10.500%,22.500%{transform:translateX(377.4px)}22.510%,100%{transform:translateX(0)}}
+    .v0{opacity:0;animation:v0 20s step-end infinite}
+    @keyframes v0{0%{opacity:0}0.000%{opacity:1}22.510%{opacity:0}}
+    .t1{transform-box:fill-box;transform-origin:left center;animation:t1 20s steps(38) infinite}
+    @keyframes t1{0%,25.000%{transform:scaleX(0)}35.500%,47.500%{transform:scaleX(1)}47.510%,100%{transform:scaleX(0)}}
+    .k1{animation:k1 20s steps(38) infinite}
+    @keyframes k1{0%,25.000%{transform:translateX(0)}35.500%,47.500%{transform:translateX(387.6px)}47.510%,100%{transform:translateX(0)}}
+    .v1{opacity:0;animation:v1 20s step-end infinite}
+    @keyframes v1{0%{opacity:0}25.000%{opacity:1}47.510%{opacity:0}}
+    .t2{transform-box:fill-box;transform-origin:left center;animation:t2 20s steps(35) infinite}
+    @keyframes t2{0%,50.000%{transform:scaleX(0)}60.500%,72.500%{transform:scaleX(1)}72.510%,100%{transform:scaleX(0)}}
+    .k2{animation:k2 20s steps(35) infinite}
+    @keyframes k2{0%,50.000%{transform:translateX(0)}60.500%,72.500%{transform:translateX(357.0px)}72.510%,100%{transform:translateX(0)}}
+    .v2{opacity:0;animation:v2 20s step-end infinite}
+    @keyframes v2{0%{opacity:0}50.000%{opacity:1}72.510%{opacity:0}}
+    .t3{transform-box:fill-box;transform-origin:left center;animation:t3 20s steps(36) infinite}
+    @keyframes t3{0%,75.000%{transform:scaleX(0)}85.500%,97.500%{transform:scaleX(1)}97.510%,100%{transform:scaleX(0)}}
+    .k3{animation:k3 20s steps(36) infinite}
+    @keyframes k3{0%,75.000%{transform:translateX(0)}85.500%,97.500%{transform:translateX(367.2px)}97.510%,100%{transform:translateX(0)}}
+    .v3{opacity:0;animation:v3 20s step-end infinite}
+    @keyframes v3{0%{opacity:0}75.000%{opacity:1}97.510%{opacity:0}}
+    @media (prefers-reduced-motion:reduce){.c,.pulse,.dot,.rise{animation:none}.t0,.k0,.v0{animation:none}.t0{transform:none}.v0{opacity:1}.t1,.k1,.v1{animation:none}.t1{transform:none}.v1{opacity:0}.t2,.k2,.v2{animation:none}.t2{transform:none}.v2{opacity:0}.t3,.k3,.v3{animation:none}.t3{transform:none}.v3{opacity:0}.k0{transform:translateX(377.4px)}}
   </style>
 </defs>
 <g clip-path="url(#frame)">
@@ -45,10 +64,26 @@
     <text x="64" y="242" font-family="ui-sans-serif,-apple-system,'Segoe UI',Inter,Roboto,Helvetica,Arial,sans-serif" font-size="17" fill="#9c9ca3">Landing pages, sistemas a medida y automatización con N8N + IA</text>
   </g>
   <g class="rise" style="animation-delay:.36s">
-    <g clip-path="url(#type)">
-      <text x="64" y="290" font-family="ui-monospace,'SF Mono','Cascadia Code',Consolas,'JetBrains Mono',monospace" font-size="17" fill="#f3f3f0" textLength="420" lengthAdjust="spacingAndGlyphs"><tspan fill="#10b981">$</tspan> npm run build -- --from santiago-cl</text>
+    <g class="v0">
+      <clipPath id="clip0"><rect class="t0" x="64" y="268" width="377.4" height="32"/></clipPath>
+      <g clip-path="url(#clip0)"><text x="64" y="290" font-family="ui-monospace,'SF Mono','Cascadia Code',Consolas,'JetBrains Mono',monospace" font-size="17" fill="#f3f3f0" textLength="377.4" lengthAdjust="spacingAndGlyphs"><tspan fill="#10b981">$</tspan> npm run build -- --from santiago-cl</text></g>
+      <rect class="k0" x="66" y="274" width="9" height="21" rx="1" fill="#ff8800"><animate attributeName="opacity" values="1;0;1" dur="0.9s" calcMode="discrete" repeatCount="indefinite"/></rect>
     </g>
-    <rect class="caret" x="66" y="274" width="9" height="21" rx="1" fill="#ff8800"/>
+    <g class="v1">
+      <clipPath id="clip1"><rect class="t1" x="64" y="268" width="387.6" height="32"/></clipPath>
+      <g clip-path="url(#clip1)"><text x="64" y="290" font-family="ui-monospace,'SF Mono','Cascadia Code',Consolas,'JetBrains Mono',monospace" font-size="17" fill="#f3f3f0" textLength="387.6" lengthAdjust="spacingAndGlyphs"><tspan fill="#10b981">$</tspan> n8n execute --workflow ventas-con-ia</text></g>
+      <rect class="k1" x="66" y="274" width="9" height="21" rx="1" fill="#ff8800"><animate attributeName="opacity" values="1;0;1" dur="0.9s" calcMode="discrete" repeatCount="indefinite"/></rect>
+    </g>
+    <g class="v2">
+      <clipPath id="clip2"><rect class="t2" x="64" y="268" width="357.0" height="32"/></clipPath>
+      <g clip-path="url(#clip2)"><text x="64" y="290" font-family="ui-monospace,'SF Mono','Cascadia Code',Consolas,'JetBrains Mono',monospace" font-size="17" fill="#f3f3f0" textLength="357.0" lengthAdjust="spacingAndGlyphs"><tspan fill="#10b981">$</tspan> vercel deploy --prod landing-pyme</text></g>
+      <rect class="k2" x="66" y="274" width="9" height="21" rx="1" fill="#ff8800"><animate attributeName="opacity" values="1;0;1" dur="0.9s" calcMode="discrete" repeatCount="indefinite"/></rect>
+    </g>
+    <g class="v3">
+      <clipPath id="clip3"><rect class="t3" x="64" y="268" width="367.2" height="32"/></clipPath>
+      <g clip-path="url(#clip3)"><text x="64" y="290" font-family="ui-monospace,'SF Mono','Cascadia Code',Consolas,'JetBrains Mono',monospace" font-size="17" fill="#f3f3f0" textLength="367.2" lengthAdjust="spacingAndGlyphs"><tspan fill="#10b981">$</tspan> git commit -m &quot;otro cliente feliz&quot;</text></g>
+      <rect class="k3" x="66" y="274" width="9" height="21" rx="1" fill="#ff8800"><animate attributeName="opacity" values="1;0;1" dur="0.9s" calcMode="discrete" repeatCount="indefinite"/></rect>
+    </g>
   </g>
   <text x="64" y="340" font-family="ui-monospace,'SF Mono','Cascadia Code',Consolas,'JetBrains Mono',monospace" font-size="12" letter-spacing="2" fill="#9c9ca3">SANTIAGO, CHILE · REMOTO · DANIDEV.CL</text>
 </g>

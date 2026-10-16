@@ -114,9 +114,23 @@ const THEMES = {
   },
 };
 
+const COPY = {
+  es: {
+    locale: 'es-CL', total: 'Contribuciones totales', since: 'Desde', current: 'Racha actual', longest: 'Racha más larga',
+    none: 'Sin racha activa', day: 'día', days: 'días', recent: 'ÚLTIMOS 6 MESES', lastYear: 'EN EL ÚLTIMO AÑO',
+    active: 'DÍAS ACTIVOS', contributions: 'contribuciones',
+  },
+  en: {
+    locale: 'en-US', total: 'Total contributions', since: 'Since', current: 'Current streak', longest: 'Longest streak',
+    none: 'No active streak', day: 'day', days: 'days', recent: 'LAST 6 MONTHS', lastYear: 'IN THE LAST YEAR',
+    active: 'ACTIVE DAYS', contributions: 'contributions',
+  },
+};
+let L = COPY.es;
+
 const fmt = (iso, withYear = true) =>
   iso
-    ? new Date(`${iso}T12:00:00Z`).toLocaleDateString('es-CL', {
+    ? new Date(`${iso}T12:00:00Z`).toLocaleDateString(L.locale, {
         day: 'numeric',
         month: 'short',
         ...(withYear ? { year: 'numeric' } : {}),
@@ -125,9 +139,9 @@ const fmt = (iso, withYear = true) =>
     : '—';
 
 const range = (s) =>
-  !s.start ? 'Sin racha activa' : s.start === s.end ? fmt(s.start) : `${fmt(s.start, false)} – ${fmt(s.end)}`;
+  !s.start ? L.none : s.start === s.end ? fmt(s.start) : `${fmt(s.start, false)} – ${fmt(s.end)}`;
 
-const nf = (n) => n.toLocaleString('es-CL');
+const nf = (n) => n.toLocaleString(L.locale);
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 function render(stats, name) {
@@ -169,7 +183,7 @@ function render(stats, name) {
   </g>`;
 
   const cx = col * 1.5;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${nf(stats.total)} contribuciones; racha actual de ${stats.current.length} días; racha más larga de ${stats.longest.length} días">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${nf(stats.total)} ${L.contributions} · ${L.current}: ${stats.current.length} · ${L.longest}: ${stats.longest.length}">
 <style>
   .rise{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
   @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -185,21 +199,21 @@ function render(stats, name) {
 <line x1="${col}" y1="34" x2="${col}" y2="168" stroke="${t.divider}"/>
 <line x1="${col * 2}" y1="34" x2="${col * 2}" y2="168" stroke="${t.divider}"/>
 
-${stat(col / 2, nf(stats.total), 'Contribuciones totales', `Desde ${fmt(stats.first)}`, 0.05)}
+${stat(col / 2, nf(stats.total), L.total, `${L.since} ${fmt(stats.first)}`, 0.05)}
 
 <g class="rise" style="animation-delay:.15s">
   <circle cx="${cx}" cy="76" r="${R}" fill="none" stroke="${t.ring}" stroke-width="6"/>
   <circle class="ring" cx="${cx}" cy="76" r="${R}" fill="none" stroke="#ff8800" stroke-width="6" stroke-linecap="round" transform="rotate(-90 ${cx} 76)"/>
   <g class="flame"><path transform="translate(${cx - 9} ${76 - R - 13})" d="M9 0C10 5 15 7 15 13a6 6 0 0 1-12 0c0-3 1.5-5 3-6.5 0 2 1 3.5 2.5 3.5C9.5 7 8 4 9 0Z" fill="#ff8800" stroke="${t.bg}" stroke-width="2.5" paint-order="stroke"/></g>
   <text x="${cx}" y="90" text-anchor="middle" font-family="${font}" font-size="38" font-weight="700" letter-spacing="-1" fill="${t.fg}">${stats.current.length}</text>
-  <text x="${cx}" y="150" text-anchor="middle" font-family="${font}" font-size="14.5" font-weight="600" fill="#ff8800">Racha actual</text>
+  <text x="${cx}" y="150" text-anchor="middle" font-family="${font}" font-size="14.5" font-weight="600" fill="#ff8800">${L.current}</text>
   <text x="${cx}" y="170" text-anchor="middle" font-family="${font}" font-size="12.5" fill="${t.muted}">${esc(range(stats.current))}</text>
 </g>
 
-${stat(col * 2.5, `${stats.longest.length} ${stats.longest.length === 1 ? 'día' : 'días'}`, 'Racha más larga', range(stats.longest), 0.25)}
+${stat(col * 2.5, `${stats.longest.length} ${stats.longest.length === 1 ? L.day : L.days}`, L.longest, range(stats.longest), 0.25)}
 
-<text x="${gx}" y="${gy - 12}" font-family="${mono}" font-size="10.5" letter-spacing="1.6" fill="${t.faint}">ÚLTIMOS 6 MESES</text>
-<text x="${gx + gridW}" y="${gy - 12}" text-anchor="end" font-family="${mono}" font-size="10.5" letter-spacing="1.2" fill="${t.faint}">${nf(stats.lastYear)} EN EL ÚLTIMO AÑO · ${stats.activeDays} DÍAS ACTIVOS</text>
+<text x="${gx}" y="${gy - 12}" font-family="${mono}" font-size="10.5" letter-spacing="1.6" fill="${t.faint}">${L.recent}</text>
+<text x="${gx + gridW}" y="${gy - 12}" text-anchor="end" font-family="${mono}" font-size="10.5" letter-spacing="1.2" fill="${t.faint}">${nf(stats.lastYear)} ${L.lastYear} · ${stats.activeDays} ${L.active}</text>
 ${bars}
 </svg>
 `;
@@ -210,7 +224,12 @@ ${bars}
 const days = SAMPLE ? sampleDays() : await fetchDays();
 const stats = computeStats(days);
 mkdirSync(OUT, { recursive: true });
-for (const name of Object.keys(THEMES)) writeFileSync(`${OUT}/stats-${name}.svg`, render(stats, name));
+for (const lang of Object.keys(COPY)) {
+  L = COPY[lang];
+  for (const name of Object.keys(THEMES)) {
+    writeFileSync(`${OUT}/stats-${name}${lang === 'es' ? '' : `-${lang}`}.svg`, render(stats, name));
+  }
+}
 console.log(
   `total=${stats.total} últimoAño=${stats.lastYear} racha=${stats.current.length} másLarga=${stats.longest.length}`
 );
