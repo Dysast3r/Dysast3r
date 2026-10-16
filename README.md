@@ -95,9 +95,9 @@ const daniel = {
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=Dysast3r&locale=es&background=0a0a0b&border=222226&stroke=222226&ring=ff8800&fire=ff8800&currStreakNum=f3f3f0&sideNums=f3f3f0&currStreakLabel=ff8800&sideLabels=9c9ca3&dates=6b6b72&border_radius=14">
-    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com/?user=Dysast3r&locale=es&background=ffffff&border=e1e1dc&stroke=e1e1dc&ring=ff8800&fire=ff8800&currStreakNum=121214&sideNums=121214&currStreakLabel=ff8800&sideLabels=5d5d63&dates=8a8a90&border_radius=14">
-    <img alt="Racha de contribuciones" src="https://streak-stats.demolab.com/?user=Dysast3r&locale=es&background=0a0a0b&border=222226&stroke=222226&ring=ff8800&fire=ff8800&currStreakNum=f3f3f0&sideNums=f3f3f0&currStreakLabel=ff8800&sideLabels=9c9ca3&dates=6b6b72&border_radius=14" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Dysast3r/Dysast3r/output/stats-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Dysast3r/Dysast3r/output/stats-light.svg">
+    <img alt="Contribuciones totales, racha actual y racha más larga" src="https://raw.githubusercontent.com/Dysast3r/Dysast3r/output/stats-dark.svg" width="100%">
   </picture>
 </p>
 
